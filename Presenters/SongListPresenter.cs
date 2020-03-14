@@ -41,13 +41,19 @@ namespace AdminForm.Presenters
 
         public void Add(songs song)
         {
-            view.bindingList.Add(song);
+            view.songLista.Add(song);
             ur.Insert(song);
         }
 
+        public void Modify(songs song)
+        {
+            ur.Update(song);
+        }
+
+
         public void Remove(int index)
         {
-            var toDelete = view.bindingList.ElementAt(index);
+            var toDelete = view.songLista.ElementAt(index);
             view.songLista.RemoveAt(index);
             if (toDelete.id > 0)
             {

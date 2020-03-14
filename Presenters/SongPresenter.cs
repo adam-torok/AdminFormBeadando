@@ -22,6 +22,12 @@ namespace AdminForm.Presenters
         {
 
         }
+
+        public void Modify(songs song)
+        {
+            sr.Update(song);
+        }
+
         public void Add(songs song)
         {
             view.songlist.Add(song);

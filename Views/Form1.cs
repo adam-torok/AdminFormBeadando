@@ -109,6 +109,10 @@ namespace AdminForm
 
         BindingList<songs> IDataGridList<songs>.bindingList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+
+
+        //szar
+
         private void Form1_Load(object sender, EventArgs e)
         {
             userpresenter.LoadData();
@@ -120,11 +124,15 @@ namespace AdminForm
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
+                materialRaisedButtonNewUser.Show();
+                materialRaisedButtonNewUser.Enabled = true;
                 tableLayoutPanel1.Show();
                 userpresenter.LoadData();
             }
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
             {
+                materialRaisedButtonNewUser.Enabled = false;
+                materialRaisedButtonNewUser.Hide();
                 tableLayoutPanel1.Show();
                 songpresenter.LoadData();
             }
@@ -161,34 +169,43 @@ namespace AdminForm
                     }
                 }
             }
-            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
-            {
-                using (var szerkForm = new AddSongForm())
-                {
-                    DialogResult dr = szerkForm.ShowDialog(this);
-                    if (dr == DialogResult.OK)
-                    {
-                        songpresenter.Add(szerkForm.songs);
-                        szerkForm.Close();
-                    }
-                }
-            }
         }
 
         private void EditDGRow(int index)
         {
-            var jk = (felhasznalo)dataGridView1.Rows[index].DataBoundItem;
-
-            if (jk != null)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                using (var modForm = new AddUserForm())
+                var jk = (felhasznalo)dataGridView1.Rows[index].DataBoundItem;
+
+                if (jk != null)
                 {
-                    modForm.felhasznalo = jk;
-                    DialogResult dr = modForm.ShowDialog(this);
-                    if (dr == DialogResult.OK)
+                    using (var modForm = new AddUserForm())
                     {
-                        userpresenter.Modify(modForm.felhasznalo);
-                        modForm.Close();
+                        modForm.felhasznalo = jk;
+                        DialogResult dr = modForm.ShowDialog(this);
+                        if (dr == DialogResult.OK)
+                        {
+                            userpresenter.Modify(modForm.felhasznalo);
+                            modForm.Close();
+                        }
+                    }
+                }
+            }
+
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
+            {
+                var sk = (songs)dataGridView2.Rows[index].DataBoundItem;
+                if (sk != null)
+                {
+                    using (var szerkForm = new AddSongForm())
+                    {
+                        szerkForm.songs = sk;
+                        DialogResult dr = szerkForm.ShowDialog(this);
+                        if (dr == DialogResult.OK)
+                        {
+                            songpresenter.Modify(szerkForm.songs);
+                            szerkForm.Close();
+                        }
                     }
                 }
             }
@@ -206,10 +223,13 @@ namespace AdminForm
             }
             else
             {
-                while (dataGridView2.SelectedRows.Count > 0)
+                if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
                 {
-                    songpresenter.Remove(dataGridView1.SelectedRows[0].Index);
-                }
+                    while (dataGridView2.SelectedRows.Count > 0)
+                    {
+                        songpresenter.Remove(dataGridView2.SelectedRows[0].Index);
+                    }
+                }         
             }
         }
 
@@ -296,14 +316,26 @@ namespace AdminForm
 
         private void materialRaisedButtonnr_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows != null)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                var sorIndex = dataGridView1.SelectedCells[0].RowIndex;
-                dataGridView1.ClearSelection();
-                dataGridView1.Rows[sorIndex].Selected = true;
-                EditDGRow(dataGridView1.SelectedRows[0].Index);
-
+                if (dataGridView1.SelectedRows != null)
+                {
+                    var sorIndex = dataGridView1.SelectedCells[0].RowIndex;
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[sorIndex].Selected = true;
+                    EditDGRow(dataGridView1.SelectedRows[0].Index);
+                }
             }
+            else
+            {
+                if (dataGridView2.SelectedRows != null)
+                {
+                    var sorIndex = dataGridView2.SelectedCells[0].RowIndex;
+                    dataGridView2.ClearSelection();
+                    dataGridView2.Rows[sorIndex].Selected = true;
+                    EditDGRow(dataGridView2.SelectedRows[0].Index);
+                }
+            }        
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

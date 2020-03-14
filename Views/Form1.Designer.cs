@@ -584,7 +584,7 @@
             // materialRaisedButtonNewUser
             // 
             this.materialRaisedButtonNewUser.Depth = 0;
-            this.materialRaisedButtonNewUser.Location = new System.Drawing.Point(1512, 278);
+            this.materialRaisedButtonNewUser.Location = new System.Drawing.Point(1512, 406);
             this.materialRaisedButtonNewUser.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonNewUser.Name = "materialRaisedButtonNewUser";
             this.materialRaisedButtonNewUser.Primary = true;
@@ -597,7 +597,7 @@
             // materialRaisedButtonNewsletterOpener
             // 
             this.materialRaisedButtonNewsletterOpener.Depth = 0;
-            this.materialRaisedButtonNewsletterOpener.Location = new System.Drawing.Point(1512, 333);
+            this.materialRaisedButtonNewsletterOpener.Location = new System.Drawing.Point(1512, 284);
             this.materialRaisedButtonNewsletterOpener.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonNewsletterOpener.Name = "materialRaisedButtonNewsletterOpener";
             this.materialRaisedButtonNewsletterOpener.Primary = true;
@@ -610,7 +610,7 @@
             // materialRaisedButtonnr
             // 
             this.materialRaisedButtonnr.Depth = 0;
-            this.materialRaisedButtonnr.Location = new System.Drawing.Point(1512, 392);
+            this.materialRaisedButtonnr.Location = new System.Drawing.Point(1512, 342);
             this.materialRaisedButtonnr.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonnr.Name = "materialRaisedButtonnr";
             this.materialRaisedButtonnr.Primary = true;
@@ -639,7 +639,7 @@
             // 
             this.keresestoolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.keresestoolStripTextBox.Name = "keresestoolStripTextBox";
-            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 31);
             this.keresestoolStripTextBox.ToolTipText = "Keresés";
             // 
             // toolStripButton1
@@ -648,7 +648,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(83, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(83, 28);
             this.toolStripButton1.Text = "Keresés";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -658,7 +658,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // errorProvider1
