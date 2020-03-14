@@ -25,13 +25,10 @@ namespace AdminForm.Presenters
         //    this.addSongForm = addSongForm;
         //}
 
-
-
         public void LoadData()
         {
-            view.songLista = ur.getAllSongs(view.pageNumber, view.itemsPerPage, view.sortBy, view.ascending);
+            view.songLista = ur.getAllSongs(view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
             view.totalItems = ur.Count();
-            view.songLista = ur.getAllSongs();
         }
 
         public void Save()

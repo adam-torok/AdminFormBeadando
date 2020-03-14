@@ -48,8 +48,12 @@
             this.checkBoxApproved = new System.Windows.Forms.CheckBox();
             this.dateTimePickerSong = new System.Windows.Forms.DateTimePicker();
             this.materialSingleLineTextFieldSongGenre = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.materialRaisedButtonSaveSong = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // materialSingleLineTextFieldArtistName
@@ -277,11 +281,46 @@
             this.materialSingleLineTextFieldSongGenre.TabIndex = 19;
             this.materialSingleLineTextFieldSongGenre.UseSystemPasswordChar = false;
             // 
+            // materialRaisedButtonSaveSong
+            // 
+            this.materialRaisedButtonSaveSong.Depth = 0;
+            this.materialRaisedButtonSaveSong.Location = new System.Drawing.Point(37, 526);
+            this.materialRaisedButtonSaveSong.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButtonSaveSong.Name = "materialRaisedButtonSaveSong";
+            this.materialRaisedButtonSaveSong.Primary = true;
+            this.materialRaisedButtonSaveSong.Size = new System.Drawing.Size(130, 38);
+            this.materialRaisedButtonSaveSong.TabIndex = 20;
+            this.materialRaisedButtonSaveSong.Text = "Mentés!";
+            this.materialRaisedButtonSaveSong.UseVisualStyleBackColor = true;
+            this.materialRaisedButtonSaveSong.Click += new System.EventHandler(this.materialRaisedButtonSaveSong_Click);
+            // 
+            // materialFlatButtonCancel
+            // 
+            this.materialFlatButtonCancel.AutoSize = true;
+            this.materialFlatButtonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButtonCancel.Depth = 0;
+            this.materialFlatButtonCancel.Location = new System.Drawing.Point(228, 527);
+            this.materialFlatButtonCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButtonCancel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButtonCancel.Name = "materialFlatButtonCancel";
+            this.materialFlatButtonCancel.Primary = false;
+            this.materialFlatButtonCancel.Size = new System.Drawing.Size(70, 36);
+            this.materialFlatButtonCancel.TabIndex = 21;
+            this.materialFlatButtonCancel.Text = "Mégse";
+            this.materialFlatButtonCancel.UseVisualStyleBackColor = true;
+            this.materialFlatButtonCancel.Click += new System.EventHandler(this.materialFlatButtonCancel_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddSongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 531);
+            this.ClientSize = new System.Drawing.Size(490, 586);
+            this.Controls.Add(this.materialFlatButtonCancel);
+            this.Controls.Add(this.materialRaisedButtonSaveSong);
             this.Controls.Add(this.materialSingleLineTextFieldSongGenre);
             this.Controls.Add(this.dateTimePickerSong);
             this.Controls.Add(this.checkBoxApproved);
@@ -303,6 +342,7 @@
             this.Load += new System.EventHandler(this.AddSongForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +369,8 @@
         private System.Windows.Forms.CheckBox checkBoxApproved;
         private System.Windows.Forms.DateTimePicker dateTimePickerSong;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextFieldSongGenre;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButtonSaveSong;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonCancel;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

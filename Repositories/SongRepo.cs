@@ -15,12 +15,56 @@ namespace AdminForm.Repositories
 
         public BindingList<songs> getAllSongs
         (
-             int page = 0,
+            int page = 0,
             int itemsPerPage = 0,
+            string search = null,
             string sortBy = null,
             bool ascending = true)
         {
             var query = context.songs.OrderBy(x => x.id).AsQueryable();
+
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.ToLower();
+                query = query.Where(x => x.artist.ToLower().Contains(search) ||
+                                     x.covername.ToLower().Contains(search) ||
+                                     x.filename.ToLower().Contains(search) ||
+                                     x.genre.ToLower().Contains(search) ||
+                                     x.name.ToLower().Contains(search) ||
+                                     x.uploadedby.ToLower().Contains(search));
+            }
+
+            if (!string.IsNullOrWhiteSpace(sortBy))
+            {
+                switch (sortBy)
+                {
+                    default:
+                        query = ascending ? query.OrderBy(x => x.id) : query.OrderByDescending(x => x.id);
+                        break;
+                    case "artist":
+                        query = ascending ? query.OrderBy(x => x.artist) : query.OrderByDescending(x => x.artist);
+                        break;
+                    case "covername":
+                        query = ascending ? query.OrderBy(x => x.covername) : query.OrderByDescending(x => x.covername);
+                        break;
+                    case "filename":
+                        query = ascending ? query.OrderBy(x => x.filename) : query.OrderByDescending(x => x.filename);
+                        break;
+                    case "genre":
+                        query = ascending ? query.OrderBy(x => x.genre) : query.OrderByDescending(x => x.genre);
+                        break;
+                    case "name":
+                        query = ascending ? query.OrderBy(x => x.name) : query.OrderByDescending(x => x.name);
+                        break;
+                    case "time":
+                        query = ascending ? query.OrderBy(x => x.time) : query.OrderByDescending(x => x.time);
+                        break;
+                    case "uploadedby":
+                        query = ascending ? query.OrderBy(x => x.uploadedby) : query.OrderByDescending(x => x.uploadedby);
+                        break;
+                }
+            }
 
             _totalItems = query.Count();
 
@@ -69,7 +113,20 @@ namespace AdminForm.Repositories
             }
             context.songs.Add(song);
         }
-     }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                context.Dispose();
+            }
+        }
+    }
  }
 
 

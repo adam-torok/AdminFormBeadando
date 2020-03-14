@@ -168,6 +168,7 @@
             this.materialFlatButton1.TabIndex = 8;
             this.materialFlatButton1.Text = "Mégse";
             this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
             // 
             // materialContextMenuStrip1
             // 

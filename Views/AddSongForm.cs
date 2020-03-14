@@ -54,21 +54,16 @@ namespace AdminForm.Views
                     dateTimePickerSong.Value = value.time > new DateTime(0001, 01, 01, 0, 00, 00) ?
                     value.time : new DateTime(1900, 1, 1);
                     materialSingleLineTextFieldSongUploader.Text = value.uploadedby;
+                    checkBoxApproved.Checked = value.approved;
                 }
             }
 
         public BindingList<songs> songlist { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string errorMsg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private void materialRaisedButtonSaveUser_Click(object sender, EventArgs e)
-            {
-   
-            }
-
-            private void numericUpDownId_ValueChanged(object sender, EventArgs e)
-            {
-
-            }
+        public string errorMsg
+        {
+            get => errorProvider1.GetError(materialSingleLineTextFieldArtistName);
+            set => errorProvider1.SetError(materialSingleLineTextFieldArtistName, value);
+        }
 
         private void AddSongForm_Load(object sender, EventArgs e)
         {
@@ -76,6 +71,20 @@ namespace AdminForm.Views
             this.songsTableAdapter.Fill(this.felhasznaloDataSet1.songs);
 
         }
+
+        private void materialFlatButtonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void materialRaisedButtonSaveSong_Click(object sender, EventArgs e)
+        {
+            songpresenter.Save(this.songs);
+            if (string.IsNullOrEmpty(errorMsg))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+        }
     }
-    }
+}
 

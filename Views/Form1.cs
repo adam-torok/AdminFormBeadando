@@ -122,8 +122,11 @@ namespace AdminForm
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            userpresenter.LoadData();
+            songpresenter.LoadData();
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
+                materialLabelUserCount.Show();
                 materialRaisedButtonNewUser.Show();
                 materialRaisedButtonNewUser.Enabled = true;
                 tableLayoutPanel1.Show();
@@ -131,6 +134,7 @@ namespace AdminForm
             }
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
             {
+                materialLabelUserCount.Hide();
                 materialRaisedButtonNewUser.Enabled = false;
                 materialRaisedButtonNewUser.Hide();
                 tableLayoutPanel1.Show();
@@ -140,7 +144,6 @@ namespace AdminForm
             {
                 tableLayoutPanel1.Hide();
             }
-
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -300,9 +303,7 @@ namespace AdminForm
                 pageNumber = pageCount;
                 songpresenter.LoadData();
             }
-           
         }
-
         private void materialRaisedButtonNewUser_Click(object sender, EventArgs e)
         {
             newRecord();
@@ -358,51 +359,85 @@ namespace AdminForm
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (sortIndex == e.ColumnIndex)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                ascending = !ascending;
+                if (sortIndex == e.ColumnIndex)
+                {
+                    ascending = !ascending;
+                }
+                switch (e.ColumnIndex)
+                {
+                    case 1:
+                        sortBy = "id";
+                        break;
+                    case 2:
+                        sortBy = "felhnev";
+                        break;
+                    case 3:
+                        sortBy = "password";
+                        break;
+                    case 4:
+                        sortBy = "email";
+                        break;
+                    case 5:
+                        sortBy = "profpic";
+                        break;
+                    case 6:
+                        sortBy = "time";
+                        break;
+                    case 7:
+                        sortBy = "bio";
+                        break;
+                    default:
+                        sortBy = "Id";
+                        break;
+                }
+
+                sortIndex = e.ColumnIndex;
+
+                userpresenter.LoadData();
             }
-            switch (e.ColumnIndex)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
             {
-                case 1:
-                    sortBy = "id";
-                    break;
-                case 2:
-                    sortBy = "felhnev";
-                    break;
-                case 3:
-                    sortBy = "password";
-                    break;
-                case 4:
-                    sortBy = "email";
-                    break;
-                case 5:
-                    sortBy = "profpic";
-                    break;
-                case 6:
-                    sortBy = "time";
-                    break;
-                case 7:
-                    sortBy = "bio";
-                    break;
-                default:
-                    sortBy = "Id";
-                    break;
+                if (sortIndex == e.ColumnIndex)
+                {
+                    ascending = !ascending;
+                }
+                switch (e.ColumnIndex)
+                {
+                    case 1:
+                        sortBy = "id";
+                        break;
+                    case 2:
+                        sortBy = "artist";
+                        break;
+                    case 3:
+                        sortBy = "name";
+                        break;
+                    case 4:
+                        sortBy = "genre";
+                        break;
+                    case 5:
+                        sortBy = "filename";
+                        break;
+                    case 6:
+                        sortBy = "covername";
+                        break;
+                    case 7:
+                        sortBy = "uploadedby";
+                        break;
+                    default:
+                        sortBy = "time";
+                        break;
+                }
+                sortIndex = e.ColumnIndex;
+                songpresenter.LoadData();
             }
-
-            sortIndex = e.ColumnIndex;
-
-            userpresenter.LoadData();
         }
 
         private void materialRaisedButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-       
         }
     }
 }

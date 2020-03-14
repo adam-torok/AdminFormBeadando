@@ -28,8 +28,7 @@ namespace AdminForm.Presenters
 
         public void LoadData()
         {
-            view.bindingList = ur.getAllUser(
-                        view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
+            view.bindingList = ur.getAllUser(view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
             view.totalItems = ur.Count();
         }
 

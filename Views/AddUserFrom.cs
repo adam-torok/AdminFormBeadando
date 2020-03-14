@@ -72,5 +72,10 @@ namespace AdminForm.Views
         {
 
         }
+
+        private void materialFlatButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

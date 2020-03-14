@@ -296,6 +296,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(1098, 327);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -631,7 +632,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(41, 138);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(227, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(266, 27);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -639,7 +640,7 @@
             // 
             this.keresestoolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.keresestoolStripTextBox.Name = "keresestoolStripTextBox";
-            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 31);
+            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 27);
             this.keresestoolStripTextBox.ToolTipText = "Keresés";
             // 
             // toolStripButton1
@@ -648,7 +649,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(83, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(83, 24);
             this.toolStripButton1.Text = "Keresés";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -658,7 +659,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // errorProvider1
