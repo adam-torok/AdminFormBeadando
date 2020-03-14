@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="adatbazisModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="felhasznalo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="felhnev" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="jelszo" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="profile_image" Type="varchar" MaxLength="100" />
+          <Property Name="time" Type="date" Nullable="false" />
+          <Property Name="bio" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.felhasznalo.likes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="likes">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="songId" />
+            <PropertyRef Name="action" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="songId" Type="int" Nullable="false" />
+          <Property Name="action" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="newsletter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.felhasznalo.playlist_songs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="playlist_songs">
+          <Key>
+            <PropertyRef Name="playlist_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="playlist_id" Type="int" Nullable="false" />
+          <Property Name="song_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="playlists">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="songs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="artist" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="filename" Type="varchar" MaxLength="30" />
+          <Property Name="covername" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="uploadedby" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="time" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="approved" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="playlist_songs_ibfk_1">
+          <End Role="playlists" Type="Self.playlists" Multiplicity="1" />
+          <End Role="playlist_songs" Type="Self.playlist_songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="playlists">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="playlist_songs">
+              <PropertyRef Name="playlist_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="playlist_songs_ibfk_2">
+          <End Role="songs" Type="Self.songs" Multiplicity="1" />
+          <End Role="playlist_songs" Type="Self.playlist_songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="songs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="playlist_songs">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="playlists_ibfk_1">
+          <End Role="felhasznalo" Type="Self.felhasznalo" Multiplicity="1" />
+          <End Role="playlists" Type="Self.playlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="felhasznalo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="playlists">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="adatbazisModelStoreContainer">
+          <EntitySet Name="felhasznalo" EntityType="Self.felhasznalo" Schema="felhasznalo" store:Type="Tables" />
+          <EntitySet Name="newsletter" EntityType="Self.newsletter" Schema="felhasznalo" store:Type="Tables" />
+          <EntitySet Name="playlists" EntityType="Self.playlists" Schema="felhasznalo" store:Type="Tables" />
+          <EntitySet Name="songs" EntityType="Self.songs" Schema="felhasznalo" store:Type="Tables" />
+          <EntitySet Name="likes" EntityType="Self.likes" store:Type="Tables" store:Schema="felhasznalo">
+            <DefiningQuery>SELECT
+`likes`.`userId`, 
+`likes`.`songId`, 
+`likes`.`action`
+FROM `likes` AS `likes`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="playlist_songs" EntityType="Self.playlist_songs" store:Type="Tables" store:Schema="felhasznalo">
+            <DefiningQuery>SELECT
+`playlist_songs`.`playlist_id`, 
+`playlist_songs`.`song_id`
+FROM `playlist_songs` AS `playlist_songs`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="playlist_songs_ibfk_1" Association="Self.playlist_songs_ibfk_1">
+            <End Role="playlists" EntitySet="playlists" />
+            <End Role="playlist_songs" EntitySet="playlist_songs" />
+          </AssociationSet>
+          <AssociationSet Name="playlist_songs_ibfk_2" Association="Self.playlist_songs_ibfk_2">
+            <End Role="songs" EntitySet="songs" />
+            <End Role="playlist_songs" EntitySet="playlist_songs" />
+          </AssociationSet>
+          <AssociationSet Name="playlists_ibfk_1" Association="Self.playlists_ibfk_1">
+            <End Role="felhasznalo" EntitySet="felhasznalo" />
+            <End Role="playlists" EntitySet="playlists" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="adatbazisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="felhasznalo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="felhnev" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jelszo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="profile_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" />
+          <Property Name="bio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="playlists" Relationship="Self.playlists_ibfk_1" FromRole="felhasznalo" ToRole="playlists" />
+        </EntityType>
+        <EntityType Name="newsletter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="playlists">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="felhasznalo" Relationship="Self.playlists_ibfk_1" FromRole="playlists" ToRole="felhasznalo" />
+          <NavigationProperty Name="songs" Relationship="Self.playlist_songs" FromRole="playlists" ToRole="songs" />
+        </EntityType>
+        <EntityType Name="songs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="artist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="filename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="covername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uploadedby" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" />
+          <Property Name="approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="playlists" Relationship="Self.playlist_songs" FromRole="songs" ToRole="playlists" />
+        </EntityType>
+        <EntityType Name="likes">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="songId" />
+            <PropertyRef Name="action" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="songId" Type="Int32" Nullable="false" />
+          <Property Name="action" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="playlists_ibfk_1">
+          <End Role="felhasznalo" Type="Self.felhasznalo" Multiplicity="1" />
+          <End Role="playlists" Type="Self.playlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="felhasznalo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="playlists">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="playlist_songs">
+          <End Role="playlists" Type="Self.playlists" Multiplicity="*" />
+          <End Role="songs" Type="Self.songs" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="adatbazis" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="felhasznalo" EntityType="Self.felhasznalo" />
+          <EntitySet Name="newsletter" EntityType="Self.newsletter" />
+          <EntitySet Name="playlists" EntityType="Self.playlists" />
+          <EntitySet Name="songs" EntityType="Self.songs" />
+          <EntitySet Name="likes" EntityType="Self.likes" />
+          <AssociationSet Name="playlists_ibfk_1" Association="Self.playlists_ibfk_1">
+            <End Role="felhasznalo" EntitySet="felhasznalo" />
+            <End Role="playlists" EntitySet="playlists" />
+          </AssociationSet>
+          <AssociationSet Name="playlist_songs" Association="Self.playlist_songs">
+            <End Role="playlists" EntitySet="playlists" />
+            <End Role="songs" EntitySet="songs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="adatbazisModelStoreContainer" CdmEntityContainer="adatbazis">
+          <EntitySetMapping Name="felhasznalo">
+            <EntityTypeMapping TypeName="adatbazisModel.felhasznalo">
+              <MappingFragment StoreEntitySet="felhasznalo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="felhnev" ColumnName="felhnev" />
+                <ScalarProperty Name="jelszo" ColumnName="jelszo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="profile_image" ColumnName="profile_image" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="bio" ColumnName="bio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newsletter">
+            <EntityTypeMapping TypeName="adatbazisModel.newsletter">
+              <MappingFragment StoreEntitySet="newsletter">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playlists">
+            <EntityTypeMapping TypeName="adatbazisModel.playlists">
+              <MappingFragment StoreEntitySet="playlists">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="songs">
+            <EntityTypeMapping TypeName="adatbazisModel.songs">
+              <MappingFragment StoreEntitySet="songs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="artist" ColumnName="artist" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="covername" ColumnName="covername" />
+                <ScalarProperty Name="uploadedby" ColumnName="uploadedby" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="likes">
+            <EntityTypeMapping TypeName="adatbazisModel.likes">
+              <MappingFragment StoreEntitySet="likes">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="songId" ColumnName="songId" />
+                <ScalarProperty Name="action" ColumnName="action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="playlist_songs" TypeName="adatbazisModel.playlist_songs" StoreEntitySet="playlist_songs">
+            <EndProperty Name="playlists">
+              <ScalarProperty Name="id" ColumnName="playlist_id" />
+            </EndProperty>
+            <EndProperty Name="songs">
+              <ScalarProperty Name="id" ColumnName="song_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
