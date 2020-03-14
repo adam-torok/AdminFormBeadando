@@ -34,8 +34,6 @@ namespace AdminForm
         private adatbazis context = new adatbazis();
         private UserListPresenter userpresenter;
         private SongListPresenter songpresenter;
-        private UserPresenter up;
-        private SongPresenter sp;
         private DataGridViewComboBoxColumn userCol;
         private DataGridViewComboBoxColumn songCol;
 
@@ -66,7 +64,7 @@ namespace AdminForm
         public void Init()
         {
             pageNumber = 1;
-            itemsPerPage = 25;
+            itemsPerPage = 10;
             sortBy = "Id";
             sortIndex = 0;
             ascending = true;
@@ -77,7 +75,7 @@ namespace AdminForm
             get => (BindingList<songs>)dataGridView2.DataSource;
             set => dataGridView2.DataSource = value;
         }
-    public BindingList<songs> bindingListSong 
+        public BindingList<songs> bindingListSong 
         {
             get => (BindingList<songs>)dataGridView2.DataSource;
             set => dataGridView2.DataSource = value;
@@ -113,18 +111,33 @@ namespace AdminForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'felhasznaloDataSet1.songs' table. You can move, or remove it, as needed.
-            this.songsTableAdapter.Fill(this.felhasznaloDataSet1.songs);
-            // TODO: This line of code loads data into the 'felhasznaloDataSet.felhasznalo' table. You can move, or remove it, as needed.
-            this.felhasznaloTableAdapter.Fill(this.felhasznaloDataSet.felhasznalo);
             userpresenter.LoadData();
-            songpresenter.LoadData();
-     
+            songpresenter.LoadData();     
             materialLabelUserCount.Text += Convert.ToString(userLista.Count());
+        }
+
+        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
+            {
+                tableLayoutPanel1.Show();
+                userpresenter.LoadData();
+            }
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
+            {
+                tableLayoutPanel1.Show();
+                songpresenter.LoadData();
+            }
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["Info"])
+            {
+                tableLayoutPanel1.Hide();
+            }
+
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
+            songsBindingSource.EndEdit();
             songpresenter.Save();
             userpresenter.Save();    
         }
@@ -136,14 +149,28 @@ namespace AdminForm
 
         private void newRecord()
         {
-
-            using (var szerkForm = new AddUserForm())
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                DialogResult dr = szerkForm.ShowDialog(this);
-                if (dr == DialogResult.OK)
+                using (var szerkForm = new AddUserForm())
                 {
-                    userpresenter.Add(szerkForm.felhasznalo);
-                    szerkForm.Close();
+                    DialogResult dr = szerkForm.ShowDialog(this);
+                    if (dr == DialogResult.OK)
+                    {
+                        userpresenter.Add(szerkForm.felhasznalo);
+                        szerkForm.Close();
+                    }
+                }
+            }
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
+            {
+                using (var szerkForm = new AddSongForm())
+                {
+                    DialogResult dr = szerkForm.ShowDialog(this);
+                    if (dr == DialogResult.OK)
+                    {
+                        songpresenter.Add(szerkForm.songs);
+                        szerkForm.Close();
+                    }
                 }
             }
         }
@@ -188,32 +215,72 @@ namespace AdminForm
 
         private void materialFlatButtonFirst_Click(object sender, EventArgs e)
         {
-            pageNumber = 1;
-            userpresenter.LoadData();
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
+            {
+                pageNumber = 1;
+                userpresenter.LoadData();
+            }
+            else
+            {
+                pageNumber = 1;
+                songpresenter.LoadData();
+            }
+          
         }
 
         private void materialFlatBack_Click(object sender, EventArgs e)
         {
-            if (pageNumber != 1)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                pageNumber--;
-                userpresenter.LoadData();
+                if (pageNumber != 1)
+                {
+                    pageNumber--;
+                    userpresenter.LoadData();
+                }
             }
+            else
+            {
+                if (pageNumber != 1)
+                {
+                    pageNumber--;
+                    songpresenter.LoadData();
+                }
+            }       
         }
 
         private void materialFlatButtonForw_Click(object sender, EventArgs e)
         {
-            if (pageNumber != pageCount)
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                pageNumber++;
-                userpresenter.LoadData();
+                if (pageNumber != pageCount)
+                {
+                    pageNumber++;
+                    userpresenter.LoadData();
+                }
             }
+            else
+            {
+                if (pageNumber != pageCount)
+                {
+                    pageNumber++;
+                    songpresenter.LoadData();
+                }
+            }  
         }
 
         private void materialFlatButtonLast_Click(object sender, EventArgs e)
         {
-            pageNumber = pageCount;
-            userpresenter.LoadData();
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
+            {
+                pageNumber = pageCount;
+                userpresenter.LoadData();
+            }
+            else
+            {
+                pageNumber = pageCount;
+                songpresenter.LoadData();
+            }
+           
         }
 
         private void materialRaisedButtonNewUser_Click(object sender, EventArgs e)
@@ -234,7 +301,7 @@ namespace AdminForm
                 var sorIndex = dataGridView1.SelectedCells[0].RowIndex;
                 dataGridView1.ClearSelection();
                 dataGridView1.Rows[sorIndex].Selected = true;
-              EditDGRow(dataGridView1.SelectedRows[0].Index);
+                EditDGRow(dataGridView1.SelectedRows[0].Index);
 
             }
         }
@@ -303,7 +370,7 @@ namespace AdminForm
 
         private void chart1_Click(object sender, EventArgs e)
         {
-
+       
         }
     }
 }

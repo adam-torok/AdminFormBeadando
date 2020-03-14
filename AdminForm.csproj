@@ -136,6 +136,12 @@
     <Compile Include="Presenters\UserPresenter.cs" />
     <Compile Include="Repositories\SongRepo.cs" />
     <Compile Include="Repositories\UserRepo.cs" />
+    <Compile Include="Views\AddSongForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddSongForm.Designer.cs">
+      <DependentUpon>AddSongForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUserFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <Compile Include="Views\Newsletter.Designer.cs">
       <DependentUpon>Newsletter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\AddSongForm.resx">
+      <DependentUpon>AddSongForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddUserFrom.resx">
       <DependentUpon>AddUserFrom.cs</DependentUpon>
     </EmbeddedResource>

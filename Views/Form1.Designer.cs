@@ -38,12 +38,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.felhnevDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,7 +50,7 @@
             this.bioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.felhasznaloBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.felhasznaloDataSet = new AdminForm.felhasznaloDataSet();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageSongs = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.artistDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +63,7 @@
             this.approvedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.songsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.felhasznaloDataSet1 = new AdminForm.felhasznaloDataSet1();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Info = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -94,33 +90,31 @@
             this.materialRaisedButtonExit = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.materialLabelUserCount = new MaterialSkin.Controls.MaterialLabel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.felhasznaloBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.materialTabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabPageSongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet1)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.Info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSetBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // materialTabControl1
             // 
-            this.materialTabControl1.Controls.Add(this.tabPage1);
-            this.materialTabControl1.Controls.Add(this.tabPage2);
-            this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.tabPageUsers);
+            this.materialTabControl1.Controls.Add(this.tabPageSongs);
+            this.materialTabControl1.Controls.Add(this.Info);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Location = new System.Drawing.Point(41, 168);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -128,17 +122,18 @@
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.Size = new System.Drawing.Size(1108, 368);
             this.materialTabControl1.TabIndex = 0;
+            this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tabPageUsers
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1100, 339);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Felhasználók";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageUsers.Controls.Add(this.dataGridView1);
+            this.tabPageUsers.Location = new System.Drawing.Point(4, 25);
+            this.tabPageUsers.Name = "tabPageUsers";
+            this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageUsers.Size = new System.Drawing.Size(1100, 339);
+            this.tabPageUsers.TabIndex = 0;
+            this.tabPageUsers.Text = "Felhasználók";
+            this.tabPageUsers.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -252,16 +247,16 @@
             this.felhasznaloDataSet.DataSetName = "felhasznaloDataSet";
             this.felhasznaloDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tabPage2
+            // tabPageSongs
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1100, 339);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Zenék";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageSongs.Controls.Add(this.dataGridView2);
+            this.tabPageSongs.Location = new System.Drawing.Point(4, 25);
+            this.tabPageSongs.Name = "tabPageSongs";
+            this.tabPageSongs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageSongs.Size = new System.Drawing.Size(1100, 339);
+            this.tabPageSongs.TabIndex = 1;
+            this.tabPageSongs.Text = "Zenék";
+            this.tabPageSongs.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
@@ -378,16 +373,16 @@
             this.felhasznaloDataSet1.DataSetName = "felhasznaloDataSet1";
             this.felhasznaloDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tabPage3
+            // Info
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.SlateGray;
-            this.tabPage3.Controls.Add(this.pictureBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1100, 339);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Súgó";
+            this.Info.BackColor = System.Drawing.Color.SlateGray;
+            this.Info.Controls.Add(this.pictureBox1);
+            this.Info.Location = new System.Drawing.Point(4, 25);
+            this.Info.Name = "Info";
+            this.Info.Padding = new System.Windows.Forms.Padding(3);
+            this.Info.Size = new System.Drawing.Size(1100, 339);
+            this.Info.TabIndex = 2;
+            this.Info.Text = "Súgó";
             // 
             // pictureBox1
             // 
@@ -634,9 +629,9 @@
             this.keresestoolStripTextBox,
             this.toolStripButton1,
             this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(41, 134);
+            this.toolStrip1.Location = new System.Drawing.Point(41, 138);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(227, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(227, 27);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -708,30 +703,6 @@
             this.materialLabelUserCount.TabIndex = 14;
             this.materialLabelUserCount.Text = "Felhasználók száma: ";
             // 
-            // chart1
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.DataSource = this.songsBindingSource;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(1177, 193);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.Legend = "Legend1";
-            series2.Name = "Uploads";
-            series2.YValuesPerPoint = 2;
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 15;
-            this.chart1.Text = "chart1";
-            title2.Name = "Title1";
-            title2.Text = "Asd";
-            this.chart1.Titles.Add(title2);
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
-            // 
             // felhasznaloBindingSource1
             // 
             this.felhasznaloBindingSource1.DataMember = "felhasznalo";
@@ -742,7 +713,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1656, 645);
-            this.Controls.Add(this.chart1);
             this.Controls.Add(this.materialLabelUserCount);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.materialRaisedButtonExit);
@@ -762,15 +732,15 @@
             this.Text = "Adminisztátori felület";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.materialTabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPageUsers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet)).EndInit();
-            this.tabPage2.ResumeLayout(false);
+            this.tabPageSongs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
+            this.Info.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSetBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -779,7 +749,6 @@
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -789,10 +758,10 @@
         #endregion
 
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageUsers;
+        private System.Windows.Forms.TabPage tabPageSongs;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage Info;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -839,7 +808,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn approvedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabelUserCount;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.BindingSource felhasznaloBindingSource1;
     }
