@@ -64,7 +64,7 @@ namespace AdminForm
         public void Init()
         {
             pageNumber = 1;
-            itemsPerPage = 10;
+            itemsPerPage = 15;
             sortBy = "Id";
             sortIndex = 0;
             ascending = true;
@@ -116,8 +116,8 @@ namespace AdminForm
         private void Form1_Load(object sender, EventArgs e)
         {
             userpresenter.LoadData();
-            songpresenter.LoadData();     
-            materialLabelUserCount.Text += Convert.ToString(userLista.Count());
+            songpresenter.LoadData();
+            materialLabelItemCounter.Text = Convert.ToString(context.felhasznalo.Count());
         }
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,7 +126,8 @@ namespace AdminForm
             songpresenter.LoadData();
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
-                materialLabelUserCount.Show();
+                materialLabelCountName.Text = "Felhasználók száma:";
+                materialLabelItemCounter.Text = Convert.ToString(context.felhasznalo.Count());
                 materialRaisedButtonNewUser.Show();
                 materialRaisedButtonNewUser.Enabled = true;
                 tableLayoutPanel1.Show();
@@ -134,7 +135,8 @@ namespace AdminForm
             }
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
             {
-                materialLabelUserCount.Hide();
+                materialLabelCountName.Text = "Zeneszámok száma:";
+                materialLabelItemCounter.Text = Convert.ToString(context.songs.Count());
                 materialRaisedButtonNewUser.Enabled = false;
                 materialRaisedButtonNewUser.Hide();
                 tableLayoutPanel1.Show();
@@ -341,7 +343,14 @@ namespace AdminForm
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            userpresenter.LoadData();
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
+            {
+                userpresenter.LoadData();
+            }
+            else
+            {
+                songpresenter.LoadData();
+            }
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
