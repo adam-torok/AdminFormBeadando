@@ -12,9 +12,15 @@ using AdminForm.Interfaces;
 using AdminForm.Models;
 using AdminForm.Presenters;
 using AdminForm.Views;
+//MATERIAL VIEW
 using MaterialSkin;
 using MaterialSkin.Animations;
 using MaterialSkin.Controls;
+//PDF EXPORT
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Threading;
 
 namespace AdminForm
 {
@@ -32,6 +38,7 @@ namespace AdminForm
             }
         }
         private adatbazis context = new adatbazis();
+        private SongPresenter sp;
         private UserListPresenter userpresenter;
         private SongListPresenter songpresenter;
         private DataGridViewComboBoxColumn userCol;
@@ -59,7 +66,7 @@ namespace AdminForm
             songpresenter = new SongListPresenter(this);
             userCol = new DataGridViewComboBoxColumn();
             songCol = new DataGridViewComboBoxColumn();
-            Init();
+                Init();
         }
         public void Init()
         {
@@ -109,15 +116,12 @@ namespace AdminForm
 
         BindingList<songs> IDataGridList<songs>.bindingList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
-
-        //szar
-
         private void Form1_Load(object sender, EventArgs e)
         {
             userpresenter.LoadData();
             songpresenter.LoadData();
             materialLabelItemCounter.Text = Convert.ToString(context.felhasznalo.Count());
+            songsBindingSource.DataSource = context.songs.ToList();
         }
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -447,6 +451,170 @@ namespace AdminForm
         private void materialRaisedButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            makePdf();
+        }
+
+        private void makePdf()
+        {
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
+            {
+                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 10, 35);
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("datausers.pdf", FileMode.Create));
+                doc.Open();
+                iTextSharp.text.Image PNG = iTextSharp.text.Image.GetInstance("mymusiclogo.png");
+                PNG.ScalePercent(50f);
+                doc.Add(PNG);
+                Paragraph para = new Paragraph("A myMusic felhasználói részletesen");
+                PdfPTable table = new PdfPTable(dataGridView1.Columns.Count);
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    table.AddCell(new Phrase(dataGridView1.Columns[i].HeaderText));
+                }
+                table.HeaderRows = 1;
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    for (int k = 0; k < dataGridView1.Columns.Count; k++)
+                    {
+                        if (dataGridView1[k, i].Value != null)
+                        {
+                            table.AddCell(new Phrase(dataGridView1[k, i].Value.ToString()));
+                        }
+                    }
+                }
+                doc.Add(table);
+                doc.Add(para);
+                doc.Close();
+            }
+            else
+            {
+                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 10, 35);
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("datasongs.pdf", FileMode.Create));
+                doc.Open();
+                iTextSharp.text.Image PNG = iTextSharp.text.Image.GetInstance("mymusiclogo.png");
+                PNG.ScalePercent(50f);
+                doc.Add(PNG);
+                Paragraph para = new Paragraph("A myMusic zenéi részletesen");
+                PdfPTable table = new PdfPTable(dataGridView2.Columns.Count);
+                for (int i = 0; i < dataGridView2.Columns.Count; i++)
+                {
+                    table.AddCell(new Phrase(dataGridView2.Columns[i].HeaderText));
+                }
+                table.HeaderRows = 1;
+                for (int i = 0; i < dataGridView2.Columns.Count; i++)
+                {
+                    for (int k = 0; k < dataGridView2.Columns.Count; k++)
+                    {
+                        if (dataGridView2[k, i].Value != null)
+                        {
+                            table.AddCell(new Phrase(dataGridView2[k, i].Value.ToString()));
+                        }
+                    }
+                }
+                doc.Add(table);
+                doc.Add(para);
+                doc.Close();
+            }
+        }
+
+        struct DataParameter
+        {
+            public List<songs> csvsonglist;
+            
+            public List<felhasznalo> csvuserlist;
+            public string FileName { get; set; }
+        }
+
+        DataParameter _inputParameter;
+
+        private void materialRaisedButton3_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorker.IsBusy)
+                return;
+                using (SaveFileDialog sdf = new SaveFileDialog()
+                {
+                    Filter = "CSV|*.csv", ValidateNames = true
+                })
+                {
+                    if (sdf.ShowDialog() == DialogResult.OK)
+                {
+                    if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
+                    {
+                        _inputParameter.csvsonglist = songsBindingSource.DataSource as List<songs>;
+                        _inputParameter.FileName = sdf.FileName;
+                        materialProgressBar1.Minimum = 0;
+                        materialProgressBar1.Value = 0;
+                        backgroundWorker.RunWorkerAsync(_inputParameter);
+                    }
+                    else
+                    {
+                        _inputParameter.csvuserlist = felhasznaloBindingSource.DataSource as List<felhasznalo>;
+                        _inputParameter.FileName = sdf.FileName;
+                        materialProgressBar1.Minimum = 0;
+                        materialProgressBar1.Value = 0;
+                        backgroundWorker.RunWorkerAsync(_inputParameter);
+                    }                   
+                }
+                }
+            }
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
+            {
+                List<songs> list = ((DataParameter)e.Argument).csvsonglist;
+                string filename = ((DataParameter)e.Argument).FileName;
+                int index = 1;
+                int process = list.Count;
+                using (StreamWriter sw = new StreamWriter(new FileStream(filename, FileMode.Create), Encoding.UTF8))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Azonosító;Zenész;Zene neve;Műfaj;Fájlnév;Borítófájl;Feltöltő;Feltöltés ideje;Engedélyezve");
+                    foreach (songs item in list)
+                    {
+                        if (!backgroundWorker.CancellationPending)
+                        {
+                            backgroundWorker.ReportProgress(index++ * 100 / process);
+                            sb.AppendLine(string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8}", item.id, item.artist, item.name, item.genre, item.filename, item.covername, item.uploadedby, item.time, item.approved));
+                        }
+                    }
+                    sw.WriteLine(sb.ToString());
+                }
+            }
+            else
+            {
+                List<felhasznalo> list = ((DataParameter)e.Argument).csvuserlist;
+                string filename = ((DataParameter)e.Argument).FileName;
+                int index = 1;
+                int process = list.Count;
+                using (StreamWriter sw = new StreamWriter(new FileStream(filename, FileMode.Create), Encoding.UTF8))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Azonosító;Felhasználónév;Jelszó;Email;Profilkép;Regisztráció dátuma;Leírás");
+                    foreach (felhasznalo item in list)
+                    {
+                        if (!backgroundWorker.CancellationPending)
+                        {
+                            backgroundWorker.ReportProgress(index++ * 100 / process);
+                            sb.AppendLine(string.Format("{0};{1};{2};{3};{4};{5};{6}", item.id,item.felhnev,item.jelszo,item.email,item.profile_image,item.time,item.bio));
+                        }
+                    }
+                    sw.WriteLine(sb.ToString());
+                }
+            }
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            materialProgressBar1.Value = e.ProgressPercentage;
+            materialProgressBar1.Update();
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Thread.Sleep(1000);
         }
     }
 }

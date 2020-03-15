@@ -45,7 +45,6 @@ namespace AdminForm.Presenters
         public void Add(felhasznalo user)
         {
             view.bindingList.Add(user);
-
             ur.Insert(user);
         }
 

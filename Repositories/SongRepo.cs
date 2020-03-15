@@ -80,6 +80,18 @@ namespace AdminForm.Repositories
             return _totalItems;
         }
 
+        public List<songs> getGenre()
+        {
+            using (var ctx = new adatbazis())
+            {
+                var songLista = ctx.songs
+                                    .SqlQuery("Select * from songs")
+                                    .ToList<songs>();
+                return songLista;
+
+            }
+        }
+
         public void Save()
         {
             context.SaveChanges();

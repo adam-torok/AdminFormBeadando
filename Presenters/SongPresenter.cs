@@ -23,6 +23,11 @@ namespace AdminForm.Presenters
 
         }
 
+        public List<songs> getGenre()
+        {
+            return sr.getGenre();
+        }
+
         public void Modify(songs song)
         {
             sr.Update(song);

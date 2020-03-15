@@ -71,7 +71,6 @@
             this.felhasznaloTableAdapter = new AdminForm.felhasznaloDataSetTableAdapters.felhasznaloTableAdapter();
             this.felhasznaloDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.songsTableAdapter = new AdminForm.felhasznaloDataSet1TableAdapters.songsTableAdapter();
-            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.materialFlatButtonLast = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialFlatBack = new MaterialSkin.Controls.MaterialFlatButton();
@@ -91,6 +90,11 @@
             this.materialLabelCountName = new MaterialSkin.Controls.MaterialLabel();
             this.felhasznaloBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.materialLabelItemCounter = new MaterialSkin.Controls.MaterialLabel();
+            this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
+            this.materialRaisedButton3 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialTabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,7 +119,7 @@
             this.materialTabControl1.Controls.Add(this.tabPageSongs);
             this.materialTabControl1.Controls.Add(this.Info);
             this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Location = new System.Drawing.Point(41, 168);
+            this.materialTabControl1.Location = new System.Drawing.Point(27, 183);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
@@ -382,7 +386,7 @@
             this.Info.Location = new System.Drawing.Point(4, 25);
             this.Info.Name = "Info";
             this.Info.Padding = new System.Windows.Forms.Padding(3);
-            this.Info.Size = new System.Drawing.Size(1100, 339);
+            this.Info.Size = new System.Drawing.Size(1101, 330);
             this.Info.TabIndex = 2;
             this.Info.Text = "Súgó";
             // 
@@ -392,7 +396,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1094, 333);
+            this.pictureBox1.Size = new System.Drawing.Size(1095, 324);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -409,12 +413,17 @@
             // 
             // materialRaisedButton1
             // 
+            this.materialRaisedButton1.AutoSize = true;
+            this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(1119, 579);
+            this.materialRaisedButton1.Icon = null;
+            this.materialRaisedButton1.Location = new System.Drawing.Point(1187, 578);
+            this.materialRaisedButton1.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButton1.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(89, 37);
+            this.materialRaisedButton1.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButton1.TabIndex = 2;
             this.materialRaisedButton1.Text = "Mentés";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
@@ -445,20 +454,6 @@
             // 
             this.songsTableAdapter.ClearBeforeFill = true;
             // 
-            // materialRaisedButton2
-            // 
-            this.materialRaisedButton2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.materialRaisedButton2.Depth = 0;
-            this.materialRaisedButton2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(1224, 579);
-            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton2.Name = "materialRaisedButton2";
-            this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(89, 37);
-            this.materialRaisedButton2.TabIndex = 5;
-            this.materialRaisedButton2.Text = "Mégse";
-            this.materialRaisedButton2.UseVisualStyleBackColor = false;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
@@ -472,7 +467,7 @@
             this.tableLayoutPanel1.Controls.Add(this.materialFlatButtonFirst, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.materialLabelCounter, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.materialFlatButtonForw, 3, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(313, 561);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(253, 577);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -488,6 +483,7 @@
             this.materialFlatButtonLast.AutoSize = true;
             this.materialFlatButtonLast.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonLast.Depth = 0;
+            this.materialFlatButtonLast.Icon = null;
             this.materialFlatButtonLast.Location = new System.Drawing.Point(508, 6);
             this.materialFlatButtonLast.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonLast.MouseState = MaterialSkin.MouseState.HOVER;
@@ -507,6 +503,7 @@
             this.materialFlatBack.AutoSize = true;
             this.materialFlatBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatBack.Depth = 0;
+            this.materialFlatBack.Icon = null;
             this.materialFlatBack.Location = new System.Drawing.Point(130, 6);
             this.materialFlatBack.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatBack.MouseState = MaterialSkin.MouseState.HOVER;
@@ -526,6 +523,7 @@
             this.materialFlatButtonFirst.AutoSize = true;
             this.materialFlatButtonFirst.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonFirst.Depth = 0;
+            this.materialFlatButtonFirst.Icon = null;
             this.materialFlatButtonFirst.Location = new System.Drawing.Point(4, 6);
             this.materialFlatButtonFirst.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonFirst.MouseState = MaterialSkin.MouseState.HOVER;
@@ -559,6 +557,7 @@
             this.materialFlatButtonForw.AutoSize = true;
             this.materialFlatButtonForw.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonForw.Depth = 0;
+            this.materialFlatButtonForw.Icon = null;
             this.materialFlatButtonForw.Location = new System.Drawing.Point(382, 6);
             this.materialFlatButtonForw.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonForw.MouseState = MaterialSkin.MouseState.HOVER;
@@ -572,12 +571,17 @@
             // 
             // materialRaisedButtondDelete
             // 
+            this.materialRaisedButtondDelete.AutoSize = true;
+            this.materialRaisedButtondDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtondDelete.Depth = 0;
-            this.materialRaisedButtondDelete.Location = new System.Drawing.Point(1181, 196);
+            this.materialRaisedButtondDelete.Icon = null;
+            this.materialRaisedButtondDelete.Location = new System.Drawing.Point(1186, 208);
+            this.materialRaisedButtondDelete.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButtondDelete.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButtondDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtondDelete.Name = "materialRaisedButtondDelete";
             this.materialRaisedButtondDelete.Primary = true;
-            this.materialRaisedButtondDelete.Size = new System.Drawing.Size(132, 34);
+            this.materialRaisedButtondDelete.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButtondDelete.TabIndex = 7;
             this.materialRaisedButtondDelete.Text = "Törlés";
             this.materialRaisedButtondDelete.UseVisualStyleBackColor = true;
@@ -585,12 +589,17 @@
             // 
             // materialRaisedButtonNewUser
             // 
+            this.materialRaisedButtonNewUser.AutoSize = true;
+            this.materialRaisedButtonNewUser.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtonNewUser.Depth = 0;
-            this.materialRaisedButtonNewUser.Location = new System.Drawing.Point(1181, 392);
+            this.materialRaisedButtonNewUser.Icon = null;
+            this.materialRaisedButtonNewUser.Location = new System.Drawing.Point(1187, 525);
+            this.materialRaisedButtonNewUser.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButtonNewUser.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButtonNewUser.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonNewUser.Name = "materialRaisedButtonNewUser";
             this.materialRaisedButtonNewUser.Primary = true;
-            this.materialRaisedButtonNewUser.Size = new System.Drawing.Size(132, 34);
+            this.materialRaisedButtonNewUser.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButtonNewUser.TabIndex = 8;
             this.materialRaisedButtonNewUser.Text = "Új rekord";
             this.materialRaisedButtonNewUser.UseVisualStyleBackColor = true;
@@ -598,12 +607,17 @@
             // 
             // materialRaisedButtonNewsletterOpener
             // 
+            this.materialRaisedButtonNewsletterOpener.AutoSize = true;
+            this.materialRaisedButtonNewsletterOpener.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtonNewsletterOpener.Depth = 0;
-            this.materialRaisedButtonNewsletterOpener.Location = new System.Drawing.Point(1181, 266);
+            this.materialRaisedButtonNewsletterOpener.Icon = null;
+            this.materialRaisedButtonNewsletterOpener.Location = new System.Drawing.Point(1187, 264);
+            this.materialRaisedButtonNewsletterOpener.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButtonNewsletterOpener.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButtonNewsletterOpener.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonNewsletterOpener.Name = "materialRaisedButtonNewsletterOpener";
             this.materialRaisedButtonNewsletterOpener.Primary = true;
-            this.materialRaisedButtonNewsletterOpener.Size = new System.Drawing.Size(132, 34);
+            this.materialRaisedButtonNewsletterOpener.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButtonNewsletterOpener.TabIndex = 9;
             this.materialRaisedButtonNewsletterOpener.Text = "Hírlevél";
             this.materialRaisedButtonNewsletterOpener.UseVisualStyleBackColor = true;
@@ -611,12 +625,17 @@
             // 
             // materialRaisedButtonnr
             // 
+            this.materialRaisedButtonnr.AutoSize = true;
+            this.materialRaisedButtonnr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtonnr.Depth = 0;
-            this.materialRaisedButtonnr.Location = new System.Drawing.Point(1181, 329);
+            this.materialRaisedButtonnr.Icon = null;
+            this.materialRaisedButtonnr.Location = new System.Drawing.Point(1187, 319);
+            this.materialRaisedButtonnr.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButtonnr.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButtonnr.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonnr.Name = "materialRaisedButtonnr";
             this.materialRaisedButtonnr.Primary = true;
-            this.materialRaisedButtonnr.Size = new System.Drawing.Size(132, 34);
+            this.materialRaisedButtonnr.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButtonnr.TabIndex = 10;
             this.materialRaisedButtonnr.Text = "Szerkesztés";
             this.materialRaisedButtonnr.UseVisualStyleBackColor = true;
@@ -631,9 +650,9 @@
             this.keresestoolStripTextBox,
             this.toolStripButton1,
             this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(39, 134);
+            this.toolStrip1.Location = new System.Drawing.Point(34, 141);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(227, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(227, 27);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -641,7 +660,7 @@
             // 
             this.keresestoolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.keresestoolStripTextBox.Name = "keresestoolStripTextBox";
-            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 31);
+            this.keresestoolStripTextBox.Size = new System.Drawing.Size(100, 27);
             this.keresestoolStripTextBox.ToolTipText = "Keresés";
             // 
             // toolStripButton1
@@ -650,7 +669,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(83, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(83, 24);
             this.toolStripButton1.Text = "Keresés";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -660,7 +679,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // errorProvider1
@@ -669,12 +688,17 @@
             // 
             // materialRaisedButtonExit
             // 
+            this.materialRaisedButtonExit.AutoSize = true;
+            this.materialRaisedButtonExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtonExit.Depth = 0;
-            this.materialRaisedButtonExit.Location = new System.Drawing.Point(1194, 64);
+            this.materialRaisedButtonExit.Icon = null;
+            this.materialRaisedButtonExit.Location = new System.Drawing.Point(1186, 64);
+            this.materialRaisedButtonExit.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButtonExit.MinimumSize = new System.Drawing.Size(135, 0);
             this.materialRaisedButtonExit.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonExit.Name = "materialRaisedButtonExit";
             this.materialRaisedButtonExit.Primary = true;
-            this.materialRaisedButtonExit.Size = new System.Drawing.Size(119, 40);
+            this.materialRaisedButtonExit.Size = new System.Drawing.Size(135, 36);
             this.materialRaisedButtonExit.TabIndex = 12;
             this.materialRaisedButtonExit.Text = "Kilépés";
             this.materialRaisedButtonExit.UseVisualStyleBackColor = true;
@@ -702,7 +726,7 @@
             // 
             this.materialLabelItemCounter.AutoSize = true;
             this.materialLabelItemCounter.Depth = 0;
-            this.materialLabelItemCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabelItemCounter.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelItemCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelItemCounter.Location = new System.Drawing.Point(478, 141);
             this.materialLabelItemCounter.MouseState = MaterialSkin.MouseState.HOVER;
@@ -710,11 +734,79 @@
             this.materialLabelItemCounter.Size = new System.Drawing.Size(0, 24);
             this.materialLabelItemCounter.TabIndex = 15;
             // 
+            // materialDivider2
+            // 
+            this.materialDivider2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider2.Depth = 0;
+            this.materialDivider2.Location = new System.Drawing.Point(1161, 106);
+            this.materialDivider2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider2.Name = "materialDivider2";
+            this.materialDivider2.Size = new System.Drawing.Size(177, 537);
+            this.materialDivider2.TabIndex = 17;
+            this.materialDivider2.Text = "materialDivider2";
+            // 
+            // materialRaisedButton2
+            // 
+            this.materialRaisedButton2.AutoSize = true;
+            this.materialRaisedButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRaisedButton2.Depth = 0;
+            this.materialRaisedButton2.Icon = null;
+            this.materialRaisedButton2.Location = new System.Drawing.Point(1187, 376);
+            this.materialRaisedButton2.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButton2.MinimumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton2.Name = "materialRaisedButton2";
+            this.materialRaisedButton2.Primary = true;
+            this.materialRaisedButton2.Size = new System.Drawing.Size(135, 36);
+            this.materialRaisedButton2.TabIndex = 18;
+            this.materialRaisedButton2.Text = "PDF export";
+            this.materialRaisedButton2.UseVisualStyleBackColor = true;
+            this.materialRaisedButton2.Click += new System.EventHandler(this.materialRaisedButton2_Click);
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // materialProgressBar1
+            // 
+            this.materialProgressBar1.Depth = 0;
+            this.materialProgressBar1.Location = new System.Drawing.Point(205, 566);
+            this.materialProgressBar1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialProgressBar1.Name = "materialProgressBar1";
+            this.materialProgressBar1.Size = new System.Drawing.Size(731, 5);
+            this.materialProgressBar1.TabIndex = 19;
+            // 
+            // materialRaisedButton3
+            // 
+            this.materialRaisedButton3.AutoSize = true;
+            this.materialRaisedButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRaisedButton3.Depth = 0;
+            this.materialRaisedButton3.Icon = null;
+            this.materialRaisedButton3.Location = new System.Drawing.Point(1186, 435);
+            this.materialRaisedButton3.MaximumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButton3.MinimumSize = new System.Drawing.Size(135, 0);
+            this.materialRaisedButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton3.Name = "materialRaisedButton3";
+            this.materialRaisedButton3.Primary = true;
+            this.materialRaisedButton3.Size = new System.Drawing.Size(135, 36);
+            this.materialRaisedButton3.TabIndex = 20;
+            this.materialRaisedButton3.Text = "CSV EXPORT";
+            this.materialRaisedButton3.UseVisualStyleBackColor = true;
+            this.materialRaisedButton3.Click += new System.EventHandler(this.materialRaisedButton3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 645);
+            this.Controls.Add(this.materialRaisedButton3);
+            this.Controls.Add(this.materialProgressBar1);
+            this.Controls.Add(this.materialRaisedButton2);
+            this.Controls.Add(this.materialRaisedButtondDelete);
             this.Controls.Add(this.materialLabelItemCounter);
             this.Controls.Add(this.materialLabelCountName);
             this.Controls.Add(this.materialRaisedButtonExit);
@@ -722,13 +814,12 @@
             this.Controls.Add(this.materialRaisedButtonnr);
             this.Controls.Add(this.materialRaisedButtonNewsletterOpener);
             this.Controls.Add(this.materialRaisedButtonNewUser);
-            this.Controls.Add(this.materialRaisedButtondDelete);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.materialRaisedButton2);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.materialTabControl1);
+            this.Controls.Add(this.materialDivider2);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "Form1";
             this.Sizable = false;
@@ -776,7 +867,6 @@
         private felhasznaloDataSet1 felhasznaloDataSet1;
         private System.Windows.Forms.BindingSource songsBindingSource;
         private felhasznaloDataSet1TableAdapters.songsTableAdapter songsTableAdapter;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatBack;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonFirst;
@@ -813,6 +903,11 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.BindingSource felhasznaloBindingSource1;
         private MaterialSkin.Controls.MaterialLabel materialLabelItemCounter;
+        private MaterialSkin.Controls.MaterialDivider materialDivider2;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
+        private MaterialSkin.Controls.MaterialProgressBar materialProgressBar1;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton3;
+        public System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 

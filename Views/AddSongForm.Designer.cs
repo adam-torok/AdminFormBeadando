@@ -45,12 +45,12 @@
             this.materialSingleLineTextFieldSongUploader = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
-            this.checkBoxApproved = new System.Windows.Forms.CheckBox();
             this.dateTimePickerSong = new System.Windows.Forms.DateTimePicker();
             this.materialSingleLineTextFieldSongGenre = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialRaisedButtonSaveSong = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.checkBoxApproved = new MaterialSkin.Controls.MaterialCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.felhasznaloDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -249,16 +249,6 @@
             this.materialLabel8.TabIndex = 16;
             this.materialLabel8.Text = "Engedélyezve";
             // 
-            // checkBoxApproved
-            // 
-            this.checkBoxApproved.AutoSize = true;
-            this.checkBoxApproved.Location = new System.Drawing.Point(204, 480);
-            this.checkBoxApproved.Name = "checkBoxApproved";
-            this.checkBoxApproved.Size = new System.Drawing.Size(111, 21);
-            this.checkBoxApproved.TabIndex = 17;
-            this.checkBoxApproved.Text = "Engedélyzve";
-            this.checkBoxApproved.UseVisualStyleBackColor = true;
-            // 
             // dateTimePickerSong
             // 
             this.dateTimePickerSong.Location = new System.Drawing.Point(204, 435);
@@ -314,16 +304,32 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // checkBoxApproved
+            // 
+            this.checkBoxApproved.AutoSize = true;
+            this.checkBoxApproved.Depth = 0;
+            this.checkBoxApproved.Font = new System.Drawing.Font("Roboto", 10F);
+            this.checkBoxApproved.Location = new System.Drawing.Point(204, 471);
+            this.checkBoxApproved.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxApproved.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.checkBoxApproved.MouseState = MaterialSkin.MouseState.HOVER;
+            this.checkBoxApproved.Name = "checkBoxApproved";
+            this.checkBoxApproved.Ripple = true;
+            this.checkBoxApproved.Size = new System.Drawing.Size(136, 30);
+            this.checkBoxApproved.TabIndex = 22;
+            this.checkBoxApproved.Text = "Engedélyezve";
+            this.checkBoxApproved.UseVisualStyleBackColor = true;
+            // 
             // AddSongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 586);
+            this.Controls.Add(this.checkBoxApproved);
             this.Controls.Add(this.materialFlatButtonCancel);
             this.Controls.Add(this.materialRaisedButtonSaveSong);
             this.Controls.Add(this.materialSingleLineTextFieldSongGenre);
             this.Controls.Add(this.dateTimePickerSong);
-            this.Controls.Add(this.checkBoxApproved);
             this.Controls.Add(this.materialLabel8);
             this.Controls.Add(this.materialLabel7);
             this.Controls.Add(this.materialLabel6);
@@ -366,11 +372,11 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextFieldSongUploader;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
-        private System.Windows.Forms.CheckBox checkBoxApproved;
         private System.Windows.Forms.DateTimePicker dateTimePickerSong;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextFieldSongGenre;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButtonSaveSong;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonCancel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private MaterialSkin.Controls.MaterialCheckBox checkBoxApproved;
     }
 }

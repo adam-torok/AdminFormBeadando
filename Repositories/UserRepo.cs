@@ -12,7 +12,6 @@ namespace AdminForm.Repositories
     {
         private adatbazis context = new adatbazis();
         private int _totalItems;
-
         public BindingList<felhasznalo> getAllUser(
             int page = 0,
             int itemsPerPage = 0,
