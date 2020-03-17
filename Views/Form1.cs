@@ -43,7 +43,6 @@ namespace AdminForm
         private SongListPresenter songpresenter;
         private DataGridViewComboBoxColumn userCol;
         private DataGridViewComboBoxColumn songCol;
-
         // Oldaltördelés
         private int pageCount;
         private int sortIndex;
@@ -76,7 +75,6 @@ namespace AdminForm
             sortIndex = 0;
             ascending = true;
         }
-
         public BindingList<songs> songLista
         {
             get => (BindingList<songs>)dataGridView2.DataSource;
@@ -87,7 +85,6 @@ namespace AdminForm
             get => (BindingList<songs>)dataGridView2.DataSource;
             set => dataGridView2.DataSource = value;
         }
-
         public BindingList<felhasznalo> userLista
         {
             get => (BindingList<felhasznalo>)dataGridView1.DataSource;
@@ -98,13 +95,11 @@ namespace AdminForm
             get => (BindingList<felhasznalo>)dataGridView1.DataSource;
             set => dataGridView1.DataSource = value;
         }
-
         public int pageNumber { get; set; }
         public int itemsPerPage { get; set; }
         public string search => keresestoolStripTextBox.Text;
         public string sortBy { get; set; }
         public bool ascending { get; set; }
-
         public int totalItems
         {
             set
@@ -113,9 +108,7 @@ namespace AdminForm
                 materialLabelCounter.Text = pageNumber.ToString() + "/" + pageCount.ToString();
             }
         }
-
         BindingList<songs> IDataGridList<songs>.bindingList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             userpresenter.LoadData();
@@ -123,13 +116,13 @@ namespace AdminForm
             materialLabelItemCounter.Text = Convert.ToString(context.felhasznalo.Count());
             songsBindingSource.DataSource = context.songs.ToList();
         }
-
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             userpresenter.LoadData();
             songpresenter.LoadData();
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
+                ShowElements();
                 materialLabelCountName.Text = "Felhasználók száma:";
                 materialLabelItemCounter.Text = Convert.ToString(context.felhasznalo.Count());
                 materialRaisedButtonNewUser.Show();
@@ -139,6 +132,7 @@ namespace AdminForm
             }
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
             {
+                ShowElements();
                 materialLabelCountName.Text = "Zeneszámok száma:";
                 materialLabelItemCounter.Text = Convert.ToString(context.songs.Count());
                 materialRaisedButtonNewUser.Enabled = false;
@@ -148,22 +142,57 @@ namespace AdminForm
             }
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["Info"])
             {
-                tableLayoutPanel1.Hide();
+                materialTabControl1.TabPages["Info"].AutoScroll = true;
+                HideElements();
             }
         }
-
+        private void ShowElements()
+        {
+            tableLayoutPanel1.Show();
+            materialDivider2.Show();
+            materialProgressBar1.Show();
+            materialLabelCounter.Show();
+            materialLabelItemCounter.Show();
+            materialLabelCountName.Show();
+            materialFlatBack.Show();
+            materialFlatButtonFirst.Show();
+            materialRaisedButton1.Show();
+            materialRaisedButton2.Show();
+            materialRaisedButton3.Show();
+            materialRaisedButtonnr.Show();
+            materialRaisedButtondDelete.Show();
+            materialRaisedButtonNewsletterOpener.Show();
+            toolStrip1.Show();
+        }
+        private void HideElements()
+        {
+            tableLayoutPanel1.Hide();
+            materialDivider2.Hide();
+            materialProgressBar1.Hide();
+            materialRaisedButtonNewUser.Hide();
+            materialLabelCounter.Hide();
+            materialLabelItemCounter.Hide();
+            materialLabelCountName.Hide();
+            materialFlatBack.Hide();
+            materialFlatButtonFirst.Hide();
+            materialRaisedButton1.Hide();
+            materialRaisedButton2.Hide();
+            materialRaisedButton3.Hide();
+            materialRaisedButtonnr.Hide();
+            materialRaisedButtondDelete.Hide();
+            materialRaisedButtonNewsletterOpener.Hide();
+            toolStrip1.Hide();
+        }
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
             songsBindingSource.EndEdit();
             songpresenter.Save();
             userpresenter.Save();    
         }
-
         private void materialRaisedButtondDelete_Click(object sender, EventArgs e)
         {
             Delete();
         }
-
         private void newRecord()
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -179,7 +208,6 @@ namespace AdminForm
                 }
             }
         }
-
         private void EditDGRow(int index)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -219,8 +247,6 @@ namespace AdminForm
                 }
             }
         }
-
-
         private void Delete()
         {
             if(dataGridView1.SelectedRows.Count > 0)
@@ -241,7 +267,6 @@ namespace AdminForm
                 }         
             }
         }
-
         private void materialFlatButtonFirst_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -256,7 +281,6 @@ namespace AdminForm
             }
           
         }
-
         private void materialFlatBack_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -276,7 +300,6 @@ namespace AdminForm
                 }
             }       
         }
-
         private void materialFlatButtonForw_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -296,7 +319,6 @@ namespace AdminForm
                 }
             }  
         }
-
         private void materialFlatButtonLast_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -314,13 +336,11 @@ namespace AdminForm
         {
             newRecord();
         }
-
         private void materialRaisedButtonNewsletterOpener_Click(object sender, EventArgs e)
         {
             Newsletter lt = new Newsletter();
             lt.Show();
         }
-
         private void materialRaisedButtonnr_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -344,7 +364,6 @@ namespace AdminForm
                 }
             }        
         }
-
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -356,7 +375,6 @@ namespace AdminForm
                 songpresenter.LoadData();
             }
         }
-
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             if (e.Exception != null && e.ColumnIndex == 6)
@@ -369,7 +387,6 @@ namespace AdminForm
             }
 
         }
-
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -447,17 +464,14 @@ namespace AdminForm
                 songpresenter.LoadData();
             }
         }
-
         private void materialRaisedButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
             makePdf();
         }
-
         private void makePdf()
         {
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
@@ -519,7 +533,6 @@ namespace AdminForm
                 doc.Close();
             }
         }
-
         struct DataParameter
         {
             public List<songs> csvsonglist;
@@ -527,9 +540,7 @@ namespace AdminForm
             public List<felhasznalo> csvuserlist;
             public string FileName { get; set; }
         }
-
         DataParameter _inputParameter;
-
         private void materialRaisedButton3_Click(object sender, EventArgs e)
         {
             if (backgroundWorker.IsBusy)
@@ -555,15 +566,13 @@ namespace AdminForm
                         _inputParameter.FileName = sdf.FileName;
                         materialProgressBar1.Minimum = 0;
                         materialProgressBar1.Value = 0;
-                        backgroundWorker.RunWorkerAsync(_inputParameter);
+                        backgroundWorkerIOUSER.RunWorkerAsync(_inputParameter);
                     }                   
                 }
                 }
             }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageSongs"])
-            {
                 List<songs> list = ((DataParameter)e.Argument).csvsonglist;
                 string filename = ((DataParameter)e.Argument).FileName;
                 int index = 1;
@@ -582,39 +591,46 @@ namespace AdminForm
                     }
                     sw.WriteLine(sb.ToString());
                 }
-            }
-            else
-            {
-                List<felhasznalo> list = ((DataParameter)e.Argument).csvuserlist;
-                string filename = ((DataParameter)e.Argument).FileName;
-                int index = 1;
-                int process = list.Count;
-                using (StreamWriter sw = new StreamWriter(new FileStream(filename, FileMode.Create), Encoding.UTF8))
-                {
-                    StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("Azonosító;Felhasználónév;Jelszó;Email;Profilkép;Regisztráció dátuma;Leírás");
-                    foreach (felhasznalo item in list)
-                    {
-                        if (!backgroundWorker.CancellationPending)
-                        {
-                            backgroundWorker.ReportProgress(index++ * 100 / process);
-                            sb.AppendLine(string.Format("{0};{1};{2};{3};{4};{5};{6}", item.id,item.felhnev,item.jelszo,item.email,item.profile_image,item.time,item.bio));
-                        }
-                    }
-                    sw.WriteLine(sb.ToString());
-                }
-            }
+            
         }
-
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             materialProgressBar1.Value = e.ProgressPercentage;
             materialProgressBar1.Update();
         }
-
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Thread.Sleep(1000);
         }
+        private void backgroundWorkerIOUSER_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<felhasznalo> list = context.felhasznalo.ToList();
+            string filename = ((DataParameter)e.Argument).FileName;
+            int index = 1;
+            int process = list.Count;
+            using (StreamWriter sw = new StreamWriter(new FileStream(filename, FileMode.Create), Encoding.UTF8))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Azonosító;Felhasználónév;Jelszó;Email;Profilkép;Regisztráció dátuma;Leírás");
+                    foreach (felhasznalo item in list)
+                    {
+                        if (!backgroundWorkerIOUSER.CancellationPending)
+                        {
+                            sb.AppendLine(string.Format("{0};{1};{2};{3};{4};{5};{6}", item.id, item.felhnev, item.jelszo, item.email, item.profile_image, item.time, item.bio));
+                        }
+                    }
+                    sw.WriteLine(sb.ToString());
+                }
+            }       
+        private void backgroundWorkerIOUSER_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            materialProgressBar1.Value = e.ProgressPercentage;
+            materialProgressBar1.Update();
+        }
+        private void backgroundWorkerIOUSER_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Thread.Sleep(1000);
+        }
+  
     }
 }
