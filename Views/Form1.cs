@@ -477,17 +477,9 @@ namespace AdminForm
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
                 Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 10, 35);
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.Title = "Fájl neve...";
-                dialog.Filter = "Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*";
-                dialog.RestoreDirectory = true;
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {ileName);
-                }
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(dialog.FileName+".pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("datausers.pdf", FileMode.Create));
                 doc.Open();
                 iTextSharp.text.Image PNG = iTextSharp.text.Image.GetInstance("mymusiclogo.png");
-                    MessageBox.Show(dialog.F
                 PNG.ScalePercent(50f);
                 doc.Add(PNG);
                 Paragraph para = new Paragraph("A myMusic felhasználói részletesen");
