@@ -14,40 +14,32 @@ namespace AdminForm.Presenters
     {
         private ISongList view;
         private SongRepo ur = new SongRepo();
-
         public SongListPresenter(ISongList param)
         {
             view = param;
         }
-
         //public SongListPresenter(AddSongForm addSongForm)
         //{
         //    this.addSongForm = addSongForm;
         //}
-
         public void LoadData()
         {
             view.songLista = ur.getAllSongs(view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
             view.totalItems = ur.Count();
         }
-
         public void Save()
         {
             ur.Save();
         }
-
         public void Add(songs song)
         {
             view.songLista.Add(song);
             ur.Insert(song);
         }
-
         public void Modify(songs song)
         {
             ur.Update(song);
         }
-
-
         public void Remove(int index)
         {
             var toDelete = view.songLista.ElementAt(index);

@@ -20,34 +20,28 @@ namespace AdminForm.Presenters
         {
             view = param;
         }
-
         public UserListPresenter(AddUserForm addUserForm)
         {
             this.addUserForm = addUserForm;
         }
-
         public void LoadData()
         {
             view.bindingList = ur.getAllUser(view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
             view.totalItems = ur.Count();
         }
-
         public void Save()
         {
             ur.Save();
         }
-
         public void Modify(felhasznalo user)
         {
             ur.Update(user);
         }
-
         public void Add(felhasznalo user)
         {
             view.bindingList.Add(user);
             ur.Insert(user);
         }
-
         public void Remove(int index)
         {
             try

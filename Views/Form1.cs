@@ -477,9 +477,17 @@ namespace AdminForm
             if (materialTabControl1.SelectedTab == materialTabControl1.TabPages["tabPageUsers"])
             {
                 Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 10, 35);
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("datausers.pdf", FileMode.Create));
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Title = "Fájl neve...";
+                dialog.Filter = "Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                dialog.RestoreDirectory = true;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {ileName);
+                }
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(dialog.FileName+".pdf", FileMode.Create));
                 doc.Open();
                 iTextSharp.text.Image PNG = iTextSharp.text.Image.GetInstance("mymusiclogo.png");
+                    MessageBox.Show(dialog.F
                 PNG.ScalePercent(50f);
                 doc.Add(PNG);
                 Paragraph para = new Paragraph("A myMusic felhasználói részletesen");
@@ -506,7 +514,15 @@ namespace AdminForm
             else
             {
                 Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 10, 35);
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("datasongs.pdf", FileMode.Create));
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Title = "Fájl neve...";
+                dialog.Filter = "Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                dialog.RestoreDirectory = true;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show(dialog.FileName);
+                }
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(dialog.FileName + ".pdf", FileMode.Create));
                 doc.Open();
                 iTextSharp.text.Image PNG = iTextSharp.text.Image.GetInstance("mymusiclogo.png");
                 PNG.ScalePercent(50f);

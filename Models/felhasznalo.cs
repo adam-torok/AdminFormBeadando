@@ -14,8 +14,10 @@ namespace AdminForm.Models
     
     public partial class felhasznalo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public felhasznalo()
         {
+            this.playlists = new HashSet<playlists>();
         }
     
         public int id { get; set; }
@@ -26,6 +28,7 @@ namespace AdminForm.Models
         public System.DateTime time { get; set; }
         public string bio { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<playlists> playlists { get; set; }
     }
 }

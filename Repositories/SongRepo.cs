@@ -12,7 +12,6 @@ namespace AdminForm.Repositories
     {
         private adatbazis context = new adatbazis();
         private int _totalItems;
-
         public BindingList<songs> getAllSongs
         (
             int page = 0,
@@ -22,17 +21,15 @@ namespace AdminForm.Repositories
             bool ascending = true)
         {
             var query = context.songs.OrderBy(x => x.id).AsQueryable();
-
-
             if (!string.IsNullOrWhiteSpace(search))
             {
                 search = search.ToLower();
                 query = query.Where(x => x.artist.ToLower().Contains(search) ||
-                                     x.covername.ToLower().Contains(search) ||
-                                     x.filename.ToLower().Contains(search) ||
-                                     x.genre.ToLower().Contains(search) ||
-                                     x.name.ToLower().Contains(search) ||
-                                     x.uploadedby.ToLower().Contains(search));
+                x.covername.ToLower().Contains(search) ||
+                x.filename.ToLower().Contains(search) ||
+                x.genre.ToLower().Contains(search) ||
+                x.name.ToLower().Contains(search) ||
+                x.uploadedby.ToLower().Contains(search));
             }
 
             if (!string.IsNullOrWhiteSpace(sortBy))
@@ -74,12 +71,10 @@ namespace AdminForm.Repositories
             }
             return new BindingList<songs>(query.ToList());
         }
-
         public int Count()
         {
             return _totalItems;
         }
-
         public List<songs> getGenre()
         {
             using (var ctx = new adatbazis())
@@ -91,12 +86,10 @@ namespace AdminForm.Repositories
 
             }
         }
-
         public void Save()
         {
             context.SaveChanges();
         }
-
         public void Update(songs song)
         {
             var csong = context.songs.Find(song.id);
@@ -105,18 +98,15 @@ namespace AdminForm.Repositories
                     context.Entry(csong).CurrentValues.SetValues(song);
                 }
         }
-
         public bool Exists(songs song)
         {
             return context.songs.Any(x => x.id == song.id);
-        }
-        
+        }     
         public void Delete(int id)
         {
             var csong = context.songs.Find(id);
             context.songs.Remove(csong);
         }
-
         public void Insert(songs song)
         {
             if(context.songs.Any(x=> x.name == song.name))
@@ -125,7 +115,6 @@ namespace AdminForm.Repositories
             }
             context.songs.Add(song);
         }
-
         public void Dispose()
         {
             Dispose(true);

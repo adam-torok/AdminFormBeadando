@@ -13,12 +13,10 @@ namespace AdminForm.Presenters
     {
         IUser view;
         UserRepo ur = new UserRepo();
-
         public UserPresenter(IUser param)
         {
             view = param;
         }
-
         public void Save(felhasznalo felh)
         {
             view.errorMsg = null;

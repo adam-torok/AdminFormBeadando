@@ -70,7 +70,6 @@ namespace AdminForm.Repositories
         {
             context.SaveChanges();
         }
-
         public void Update(felhasznalo user)
         {
             var felh = context.felhasznalo.Find(user.id);
@@ -83,13 +82,11 @@ namespace AdminForm.Repositories
         {
             return context.felhasznalo.Any(x => x.id == user.id);
         }
-
         public void Delete(int id)
         {
             var user = context.felhasznalo.Find(id);
             context.felhasznalo.Remove(user);
         }
-
         public void Insert(felhasznalo user)
         {
             if(context.felhasznalo.Any(x => x.email == user.email) || context.felhasznalo.Any(x => x.felhnev == user.felhnev))
@@ -98,7 +95,6 @@ namespace AdminForm.Repositories
             }
             context.felhasznalo.Add(user);
         }
-
         public void Dispose()
         {
             Dispose(true);
