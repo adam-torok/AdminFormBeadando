@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdminForm.Repositories
 {
-    class UserRepo
+    class UserRepo : IUserRepo
     {
         private adatbazis context = new adatbazis();
         private int _totalItems;
@@ -21,13 +21,13 @@ namespace AdminForm.Repositories
         {
             var query = context.felhasznalo.OrderBy(x => x.id).AsQueryable();
 
-                
+
             if (!string.IsNullOrWhiteSpace(search))
             {
                 search = search.ToLower();
-                    query = query.Where(x => x.bio.ToLower().Contains(search) ||
-                                         x.email.ToLower().Contains(search) ||
-                                         x.felhnev.ToLower().Contains(search));
+                query = query.Where(x => x.bio.ToLower().Contains(search) ||
+                                     x.email.ToLower().Contains(search) ||
+                                     x.felhnev.ToLower().Contains(search));
             }
 
             if (!string.IsNullOrWhiteSpace(sortBy))
@@ -73,7 +73,7 @@ namespace AdminForm.Repositories
         public void Update(felhasznalo user)
         {
             var felh = context.felhasznalo.Find(user.id);
-            if(felh != null)
+            if (felh != null)
             {
                 context.Entry(felh).CurrentValues.SetValues(user);
             }
@@ -89,9 +89,9 @@ namespace AdminForm.Repositories
         }
         public void Insert(felhasznalo user)
         {
-            if(context.felhasznalo.Any(x => x.email == user.email) || context.felhasznalo.Any(x => x.felhnev == user.felhnev))
+            if (context.felhasznalo.Any(x => x.email == user.email) || context.felhasznalo.Any(x => x.felhnev == user.felhnev))
             {
-              throw new Exception("Már létezik ilyen felhasználó!");
+                throw new Exception("Már létezik ilyen felhasználó!");
             }
             context.felhasznalo.Add(user);
         }

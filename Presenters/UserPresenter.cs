@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 
 namespace AdminForm.Presenters
 {
-    class UserPresenter
+    public class UserPresenter
     {
-        IUser view;
-        UserRepo ur = new UserRepo();
-        public UserPresenter(IUser param)
+        private IUser user;
+        private IUserRepo ur;
+
+        public UserPresenter(IUser param, IUserRepo userRepo)
         {
-            view = param;
+            ur = userRepo;
+            user = param;
         }
+
         public void Save(felhasznalo felh)
         {
-            view.errorMsg = null;
+            user.errorMsg = null;
            
             if (ur.Exists(felh))
             {
@@ -29,7 +32,7 @@ namespace AdminForm.Presenters
                 }
                 catch (Exception ex)
                 {
-                    view.errorMsg = ex.Message;
+                    user.errorMsg = ex.Message;
                 }
             }
             else
@@ -40,7 +43,7 @@ namespace AdminForm.Presenters
                 }
                 catch(Exception ex)
                 {
-                    view.errorMsg = ex.Message;
+                    user.errorMsg = ex.Message;
                 }
             }
         }

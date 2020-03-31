@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdminForm.Repositories;
 
 namespace AdminForm.Views
 {
@@ -21,7 +22,7 @@ namespace AdminForm.Views
         public AddUserForm()
         {
             InitializeComponent();
-            Upresenter = new UserPresenter(this);
+            Upresenter = new UserPresenter(this, new UserRepo());
         }
             
         public felhasznalo felhasznalo
