@@ -20,11 +20,6 @@ namespace AdminForm.Presenters
             view = param;
         }
 
-        //public SongListPresenter(AddSongForm addSongForm)
-        //{
-        //    this.addSongForm = addSongForm;
-        //}
-
         public void LoadData()
         {
             view.songLista = ur.getAllSongs(view.pageNumber, view.itemsPerPage, view.search, view.sortBy, view.ascending);
